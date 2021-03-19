@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<form>
+<label for="topic">Topic</label>
+  <input type="text" id="topic" name="topic" value=""><br><br>
+  <label for="hash">Hashtag</label>
+  <input id="hash" name="Hashtag" value="">
+  <script>
+var a = document.getElementById('hash');
+a.addEventListener('keyup',addthis);
+
+function addthis() {
+    b = a.value.replace('#',''); 
+    a.value = '#'+b
+
+    if (a.value.indexOf(' '))
+    {
+    a.value = a.value.replace(' ','#');
+    }
+
+}
+</script>
+<br><br>
+<label for="start date">Start Date</label>
+  <input type="date" id="startdate" name="startdate"> <br> <br>
+
+<label for="end date">End Date</label>
+  <input type="date" id="enddate" name="enddate"> <br> <br>
+  <input type="submit"> 
+  
+
+</form>
+</body>
+</html>

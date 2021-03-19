@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Suggestions</title>
+</head>
+
+<body>
+<form >
+    Topic: <input type="text" class='trigger' id="topic" name='inp1' placeholder="Topic"></input>
+
+    <div id="place_for_suggestions"></div>
+
+    Hashtag: <input type="text" class='trigger' id="hashtag" name='inp2' placeholder="#Hashtag"></input>
+
+
+    <div id="place_for_suggestions1"></div>
+
+
+    <label for="start date">Start Date</label>
+    <input type="date" id="startdate" name="startdate"> <br> <br>
+  
+  <label for="end date">End Date</label>
+    <input type="date" id="enddate" name="enddate"> <br> <br>
+    <input type= 'button' id = 'submit' value='submit'>  
+    
+        <div id="place_for_form"></div>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+        $("#topic").keyup(function () {
+            var val1 = document.getElementById('topic').value;
+
+            $.ajax({
+                url: "/suggestions",
+                type: "get",
+                data: { jsdata: val1 },
+                success: function (response) {
+                    $("#place_for_suggestions").html(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+        });
+
+
+        $("#hashtag").keyup(function () {
+            var val2 = document.getElementById('hashtag').value;
+
+            $.ajax({
+                url: "/suggestions",
+                type: "get",
+                data: { jsdata: val2 },
+                success: function (response) {
+                    $("#place_for_suggestions1").html(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+        });
+
+
+        $("#submit").click(function () {
+            $.ajax({
+                url: "/compute",
+                type: "get",
+                data: { topic: document.getElementById('topic').value , 
+                        hashtag : document.getElementById('hashtag').value,
+                        startdate : document.getElementById('startdate').value,
+                        enddate : document.getElementById('enddate').value},
+                success: function (response) {
+                    $("#place_for_form").html(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
