@@ -53,7 +53,7 @@ def compute():
     #         '@Nabila_Gl', 'geceeekusuu', '@pabu232', '@av_ahmet', '@x_born_to_die_x']
 
     # users_info = get_user_information(users, headless=True)
-      
-    return render_template('dataframe.html',  tables=[data.to_html(classes='data')], titles=data.columns.values)
+    sample = data.head().drop(columns=['UserScreenName','Embedded_text','Tweet URL'],)
+    return render_template('dataframe.html',  tables=[sample.to_html(classes='data',index = False)])
 
 
