@@ -1,139 +1,171 @@
 <!doctype html>
-  <head>
-    <title>Twitter Scraper</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    
+<head>
+  <title>Twitter Scraper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="/static/css/style3.css">
-
-  </head>
-  <body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
-
-    
-<div class="unslate_co--section" id="contact-section">
-
-        <div class="container">
-
-          <div class="row justify-content-between">
-
-              <div class="col-md-12">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 
 
-                <div class="form-group row mb-0">
+  <!-- Theme Style -->
+  <link rel="stylesheet" href="/static/css/style3.css">
 
-                    <div class="col-lg-6 form-group gsap-reveal">
+</head>
 
-                    <label for="topic">Topic :</label>
-                    <input type="text" class='trigger form-control input-lg gsap-reveal font-weight-bold text-light' id="topic" name='inp1'></input>
-                    <div id="place_for_suggestions"></div>
+<body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
 
-                    </div>
+  <div class="jumbotron jumbotron-fluid" style="background-color: rgba(29, 161, 242,1);">
+    <div class="container">
+      <h1 class="display-4">Twitter Scraper and Sentiment Analysis</h1>
+    </div>
+  </div>
+  <div class="unslate_co--section" id="contact-section">
 
-                  <div class="col-lg-6 form-group gsap-reveal">
+    <div class="container">
 
-                    <label for="hashtag">Hashtag : </label>
-                    <input type="text" class='trigger form-control input-lg gsap-reveal font-weight-bold text-light' id="hashtag" name='inp2'></input>
-                    <div id="place_for_suggestions1"></div>
+      <div class="row justify-content-between">
 
-                  </div>
-
-                  <div class="col-md-6 form-group gsap-reveal">
-
-                    <label for="start date">Start Date :</label>
-                  <input type="date" id="startdate" name="startdate" class="form-control text-light">
-                  </div>
-                  <div class="col-md-6 form-group gsap-reveal">
-
-                    <label for="start date">End Date :</label>
-                 <input type="date" id="enddate" name="enddate" class="form-control text-light">
-
-                  </div>
-
-                </div>
-                  <div class="form-group row gsap-reveal mt-4">
-
-                    <div class="mx-auto" style="padding-left: 500px;">
-
-                        <input type='button' id='submit' value='submit' class = 'btn btn-outline-pill btn-custom-light pl-300'>
-                        
+        <div class="col-md-12">
 
 
-                    </div>
-                   
-                    <div id="place_for_dataset"></div>
+          <div class="form-group row mb-0">
 
-                </div>
+            <div class="col-lg-6 form-group gsap-reveal">
+
+              <label for="topic">Topic :</label>
+              <input type="text" class='trigger form-control input-lg gsap-reveal font-weight-bold text-light'
+                id="topic" name='inp1'></input>
+              <div id="place_for_suggestions"></div>
+
+            </div>
+
+            <div class="col-lg-6 form-group gsap-reveal">
+
+              <label for="hashtag">Hashtag : </label>
+              <input type="text" class='trigger form-control input-lg gsap-reveal font-weight-bold text-light'
+                id="hashtag" name='inp2'></input>
+              <div id="place_for_suggestions1"></div>
+
+            </div>
+
+            <div class="col-md-6 form-group gsap-reveal">
+
+              <label for="start date">Start Date :</label>
+              <input type="date" id="startdate" name="startdate" class="form-control text-light">
+            </div>
+            <div class="col-md-6 form-group gsap-reveal">
+
+              <label for="start date">End Date :</label>
+              <input type="date" id="enddate" name="enddate" class="form-control text-light">
+
             </div>
 
           </div>
+          <div class="form-group row gsap-reveal mt-4">
 
+            <div class="mx-auto" style="padding-left: 500px;">
+
+              <input type='button' id='submit' value='submit' class='btn btn-outline-pill btn-custom-light pl-300'>
+
+
+
+            </div>
+
+            <div id="place_for_dataset"></div>
+            <div id='sentiment_data'>
+            </div>
+
+
+          </div>
         </div>
 
       </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <script>
-        $("#topic").keyup(function () {
-            var val1 = document.getElementById('topic').value;
-
-            $.ajax({
-                url: "/suggestions",
-                type: "get",
-                data: { jsdata: val1 },
-                success: function (response) {
-                    $("#place_for_suggestions").html(response);
-                },
-                error: function (xhr) {
-                    //Do Something to handle error
-                }
-            });
-        });
 
 
-        $("#hashtag").keyup(function () {
-            var val2 = document.getElementById('hashtag').value;
 
-            $.ajax({
-                url: "/suggestions",
-                type: "get",
-                data: { jsdata: val2 },
-                success: function (response) {
-                    $("#place_for_suggestions1").html(response);
-                },
-                error: function (xhr) {
-                    //Do Something to handle error
-                }
-            });
-        });
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script>
+    $("#topic").keyup(function () {
+      var val1 = document.getElementById('topic').value;
+
+      $.ajax({
+        url: "/suggestions",
+        type: "get",
+        data: { jsdata: val1 },
+        success: function (response) {
+          $("#place_for_suggestions").html(response);
+        },
+        error: function (xhr) {
+          //Do Something to handle error
+        }
+      });
+    });
 
 
-        $("#submit").click(function () {
-            $('#submit').hide();
-            $("#place_for_dataset").html('<img src="/static/js/1494.gif" id="spinner" sizes="20%" style="padding-left: 500px;">');
-            $.ajax({
-                url: "/compute",
-                type: "get",
-                data: {
-                    topic: document.getElementById('topic').value,
-                    hashtag: document.getElementById('hashtag').value,
-                    startdate: document.getElementById('startdate').value,
-                    enddate: document.getElementById('enddate').value
-                },
-                success: function (response) {
-                    $("#place_for_dataset").html(response);
-                    $('#submit').show();
+    $("#hashtag").keyup(function () {
+      var val2 = document.getElementById('hashtag').value;
 
-                },
-                error: function (xhr) {
-                    //Do Something to handle error
-                }
-            });
-        });
+      $.ajax({
+        url: "/suggestions",
+        type: "get",
+        data: { jsdata: val2 },
+        success: function (response) {
+          $("#place_for_suggestions1").html(response);
+        },
+        error: function (xhr) {
+          //Do Something to handle error
+        }
+      });
+    });
 
-    </script>
+
+    $("#submit").click(function () {
+      $('#submit').hide();
+      $("#sentiment_data").hide();
+      $("#place_for_dataset").html('<div style="padding-left: 550px;" > <img src="/static/js/1494.gif" sizes="20%" > <span >Scraping</span>');
+      $.ajax({
+        url: "/scrape_data",
+        type: "get",
+        data: {
+          topic: document.getElementById('topic').value,
+          hashtag: document.getElementById('hashtag').value,
+          startdate: document.getElementById('startdate').value,
+          enddate: document.getElementById('enddate').value
+        },
+
+        success: function (response) {
+          $("#sentiment_data").show();
+          $("#place_for_dataset").html(response);
+          $("#sentiment_data").html('<div style="padding-left: 550px; padding-top: 50px;" > <img src="/static/js/1494.gif" sizes="20%" > <span >Analysing sentiment</span>');
+
+          // Sentiment analysis
+          $.ajax({
+            url: "/sentiment_analysis",
+            type: "get",
+            data: {
+              filename: topic.value + '_' + startdate.value + '_' + enddate.value
+            },
+            success: function (response) {
+              $('#submit').show();
+              $("#sentiment_data").html(response);
+            },
+            error: function (xhr) {
+              //Do Something to handle error
+            }
+          });
+        },
+        error: function (xhr) {
+          //Do Something to handle error
+        }
+      });
+    });
+
+  </script>
 
 </body>
+
 </html>

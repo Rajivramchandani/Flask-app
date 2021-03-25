@@ -1,6 +1,11 @@
-<h3 class="font-weight-bold" style='padding-top: 100px;'>A look at the dataset :</h3>
-<h6 style='padding-top: 100px;'>
+<h3 class="font-weight-bold" style='padding-top: 50px;'>A look at the dataset :</h3>
+<h6 style='padding-top: 50px;font-weight: 600;'>
+    <!-- Take the dataset in html form and loop through to show table -->
 {% for table in tables %}
             {{ table|safe }}
 {% endfor %}
 </h6>
+<h3 class="font-weight-bold" style='padding-top: 30px;'>Wordcloud of tweets :</h3>
+<img src= {{ wordcloud }} style= 'padding-left: 100px;'>
+<h3 class="font-weight-bold" style='padding-top: 30px;'>Number of tweets per day :</h3>
+<img src= {{ tweet_daily }} style= 'padding-left: 100px;'>
