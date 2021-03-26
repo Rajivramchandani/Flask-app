@@ -41,7 +41,7 @@ def load_model():
     # load weights into new model
     loaded_model.load_weights("static/model/model.h5")
     # loading
-    with open('tokenizer.pickle', 'rb') as handle:
+    with open('static/model/tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     return loaded_model, tokenizer
 
