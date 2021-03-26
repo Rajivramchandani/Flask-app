@@ -10,6 +10,7 @@ outputs/*
 images/*
 static/images/*
 chromedriver*
+.vscode
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
